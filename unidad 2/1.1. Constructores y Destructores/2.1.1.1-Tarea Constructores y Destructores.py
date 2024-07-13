@@ -1,23 +1,51 @@
 #Tarea constructores y Destructores
 
-class Persona:
-    def __init__(self, nombre, edad):
-        self.nombre = nombre
-        self.edad = edad
-        print(f"Se ha creado una nueva persona: {self.nombre}, {self.edad} años.")
+class Libro:
+    def __init__(self, titulo, autor, año_publicacion):
+        self.titulo = titulo
+        self.autor = autor
+        self.año_publicacion = año_publicacion
+        self.prestado = False
+        print(f"Se ha creado un nuevo libro: '{self.titulo}' de {self.autor}, publicado en {self.año_publicacion}.")
 
     def __del__(self):
-        print(f"{self.nombre} ha sido eliminado.")
+        print(f"Se ha eliminado el libro: '{self.titulo}' de {self.autor}.")
 
-    def saludar(self):
-        print(f"Hola, mi nombre es {self.nombre} y tengo {self.edad} años.")
+    def prestar(self):
+        if not self.prestado:
+            self.prestado = True
+            print(f"El libro '{self.titulo}' ha sido prestado.")
+        else:
+            print(f"El libro '{self.titulo}' ya se encuentra prestado.")
 
-# Crear objetos Persona
-persona1 = Persona("Juan", 25)
-persona2 = Persona("María", 30)
+    def devolver(self):
+        if self.prestado:
+            self.prestado = False
+            print(f"El libro '{self.titulo}' ha sido devuelto.")
+        else:
+            print(f"El libro '{self.titulo}' no se encuentra prestado.")
 
-# Llamar al método saludar
-persona1.saludar()
-persona2.saludar()
+    def mostrar_info(self):
+        estado = "prestado" if self.prestado else "disponible"
+        print(f"Título: {self.titulo}\nAutor: {self.autor}\nAño de publicación: {self.año_publicacion}\nEstado: {estado}")
 
-# El programa finaliza, activando los destructores
+# Crear objetos Libro
+libro1 = Libro("Cien años de soledad", "Gabriel García Márquez", 1967)
+libro2 = Libro("El amor en los tiempos del cólera", "Gabriel García Márquez", 1985)
+libro3 = Libro("Crónica de una muerte anunciada", "Gabriel García Márquez", 1981)
+
+# Prestar y devolver libros
+libro1.prestar()
+libro2.prestar()
+libro1.devolver()
+libro3.prestar()
+
+# Mostrar información de los libros
+libro1.mostrar_info()
+libro2.mostrar_info()
+libro3.mostrar_info()
+
+# Eliminar los libros
+del libro1
+del libro2
+del libro3
