@@ -1,4 +1,4 @@
-#Tarea Constructores y Desconstrucores
+# Tarea Constructores y Destrucores
 
 class Libro:
     def __init__(self, titulo, autor, año_publicacion):
